@@ -10,8 +10,8 @@
                 <th>No</th>
                 <th>No Faktur
                 <th>Tgl Transaksi</th>
-                <th>Pelanggan</th>
                 <th>Purchasing</th>
+                <th>Perusahaan</th>
                 <th>Admin</th>
                 <th>Aksi</th>
             </tr>
@@ -22,8 +22,8 @@
                     <td><?= $key + 1; ?></td>
                     <td><?= $item['no_faktur']; ?></td>
                     <td><?= $item['tgl_transaksi']; ?></td>
-                    <td><?= $item['nama_pelanggan']; ?></td>
                     <td><?= $item['nama_purchasing']; ?></td>
+                    <td><?= $item['nama_perusahaan']; ?></td>
                     <td><?= $item['nama_admin']; ?></td>
                     <td>
                         <a class="badge bg-primary me-1" href="<?= base_url('/admin/transaksi/detail/' .  $item['id_transaksi']) ?>">Detail</a>

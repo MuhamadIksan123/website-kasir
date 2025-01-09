@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <div>
-    <a class="btn btn-primary" href="<?= base_url('/admin/pelanggan/create') ?>"><i class="lni lni-plus"></i>Tambah Data</a>
+    <a class="btn btn-primary" href="<?= base_url('/admin/perusahaan/create') ?>"><i class="lni lni-plus"></i>Tambah Data</a>
     <table id="myTable" class="display">
         <thead>
             <tr>
@@ -14,14 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($pelanggan as $key => $item): ?>
+            <?php foreach ($perusahaan as $key => $item): ?>
                 <tr>
                     <td><?= $key + 1; ?></td>
                     <td><?= $item['nama']; ?></td>
                     <td><?= $item['alamat']; ?></td>
                     <td>
-                        <a class="badge bg-warning me-1" href="<?= base_url('/admin/pelanggan/edit/' .  $item['id']) ?>">Edit</a>
-                        <a class="badge bg-danger tombol-hapus" href="<?= base_url('/admin/pelanggan/destroy/' .  $item['id']) ?>">Delete</a>
+                        <a class="badge bg-warning me-1" href="<?= base_url('/admin/perusahaan/edit/' .  $item['id']) ?>">Edit</a>
+                        <a class="badge bg-danger tombol-hapus" href="<?= base_url('/admin/perusahaan/destroy/' .  $item['id']) ?>">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

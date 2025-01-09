@@ -9,6 +9,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
+                <th>Perusahaan</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><?= $key + 1; ?></td>
                     <td><?= $item['nama']; ?></td>
+                    <td><?= $item['nama_perusahaan']; ?></td>
                     <td>
                         <a class="badge bg-warning me-1" href="<?= base_url('/admin/purchasing/edit/' .  $item['id']) ?>">Edit</a>
                         <a class="badge bg-danger tombol-hapus" href="<?= base_url('/admin/purchasing/destroy/' .  $item['id']) ?>">Delete</a>

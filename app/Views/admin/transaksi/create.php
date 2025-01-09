@@ -51,20 +51,6 @@
 
             <!-- Input Pelanggan -->
             <div class="input-style-1">
-                <label>Pelanggan</label>
-                <select name="id_pelanggan" class="form-select <?= $validation->hasError('id_pelanggan') ? 'is-invalid' : '' ?>">
-                    <option value="">-- Pilih Pelanggan --</option>
-                    <?php foreach ($pelanggan as $item): ?>
-                        <option value="<?= $item['id']; ?>" <?= set_select('id_pelanggan', $item['id']); ?>><?= $item['nama']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <div class="invalid-feedback">
-                    <?= $validation->getError('id_pelanggan'); ?>
-                </div>
-            </div>
-
-            <!-- Input Purchasing -->
-            <div class="input-style-1">
                 <label>Purchasing</label>
                 <select name="id_purchasing" class="form-select <?= $validation->hasError('id_purchasing') ? 'is-invalid' : '' ?>">
                     <option value="">-- Pilih Purchasing --</option>

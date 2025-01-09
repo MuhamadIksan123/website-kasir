@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PelangganModel extends Model
+class PerusahaanModel extends Model
 {
-    protected $table            = 'pelanggan';
+    protected $table            = 'perusahaan';
     protected $allowedFields    = [
         'nama',
         'alamat'

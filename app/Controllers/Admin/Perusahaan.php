@@ -3,11 +3,11 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\PelangganModel;
+use App\Models\PerusahaanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
 
-class Pelanggan extends BaseController
+class Perusahaan extends BaseController
 {
     public function __construct()
     {
@@ -16,22 +16,22 @@ class Pelanggan extends BaseController
 
     public function index()
     {
-        $pelanggan = new PelangganModel();
+        $perusahaan = new PerusahaanModel();
         $data = [
-            'title' => 'Halaman Pelanggan',
+            'title' => 'Halaman Perusahaan',
             'validation' => Services::validation(),
-            'pelanggan' => $pelanggan->findAll()
+            'perusahaan' => $perusahaan->findAll()
         ];
-        return view('admin/pelanggan/index', $data);
+        return view('admin/perusahaan/index', $data);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Pelanggan',
+            'title' => 'Tambah Data Perusahaan',
             'validation' => Services::validation()
         ];
-        return view('admin/pelanggan/create', $data);
+        return view('admin/perusahaan/create', $data);
     }
 
     public function store()
@@ -40,7 +40,7 @@ class Pelanggan extends BaseController
             'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Nama harus diisi'
+                    'required' => 'Nama Perusahaan harus diisi'
                 ]
             ],
             'alamat' => [
@@ -53,36 +53,36 @@ class Pelanggan extends BaseController
 
         if (! $this->validate($rules)) {
             $data = [
-                'title' => 'Tambah Data Pelanggan',
+                'title' => 'Tambah Data Perusahaan',
                 'validation' => $this->validator
             ];
-            return view('admin/pelanggan/create', $data);
+            return view('admin/perusahaan/create', $data);
         } else {
-            $pelangganModel = new PelangganModel();
+            $pelangganModel = new PerusahaanModel();
             $pelangganModel->insert([
                 'nama' =>  $this->request->getPost('nama'),
                 'alamat' =>  $this->request->getPost('alamat')
             ]);
             session()->setFlashdata('berhasil', 'Data purchasing berhasil ditambahkan');
-            return redirect()->to('/admin/pelanggan');
+            return redirect()->to('/admin/perusahaan');
         }
     }
 
     public function edit($id)
     {
-        $pelangganModel = new PelangganModel();
-        $pelanggan = $pelangganModel->find($id);
-        if (!$pelanggan) {
+        $pelangganModel = new PerusahaanModel();
+        $perusahaan = $pelangganModel->find($id);
+        if (!$perusahaan) {
             session()->setFlashdata('Pesan', 'Data tidak tersedia');
-            return redirect()->to('/admin/pelanggan');
+            return redirect()->to('/admin/perusahaan');
         }
 
         $data = [
-            'title' => 'Edit Data Pelanggan',
+            'title' => 'Edit Data Perusahaan',
             'validation' => Services::validation(),
-            'pelanggan' => $pelanggan
+            'perusahaan' => $perusahaan
         ];
-        return view('admin/pelanggan/edit', $data);
+        return view('admin/perusahaan/edit', $data);
     }
 
     public function update($id)
@@ -91,7 +91,7 @@ class Pelanggan extends BaseController
             'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'nama' => 'Nama harus diisi'
+                    'nama' => 'Nama Perusahaan harus diisi'
                 ]
             ],
             'alamat' => [
@@ -102,39 +102,39 @@ class Pelanggan extends BaseController
             ]
         ];
 
-        $pelangganModel = new PelangganModel();
+        $pelangganModel = new PerusahaanModel();
 
         if (! $this->validate($rules)) {
             $data = [
-                'title' => 'Edit Data Pelanggan',
+                'title' => 'Edit Data Perusahaan',
                 'validation' => $this->validator,
-                'pelanggan' => $pelangganModel->find($id)
+                'perusahaan' => $pelangganModel->find($id)
             ];
-            return view("admin/pelanggan/edit", $data);
+            return view("admin/perusahaan/edit", $data);
         } else {
             $pelangganModel->update($id, [
                 'nama' =>  $this->request->getPost('nama'),
                 'alamat' =>  $this->request->getPost('alamat')
             ]);
-            session()->setFlashdata('berhasil', 'Data pelanggan berhasil diupdate');
-            return redirect()->to('/admin/pelanggan');
+            session()->setFlashdata('berhasil', 'Data perusahaan berhasil diupdate');
+            return redirect()->to('/admin/perusahaan');
         }
     }
 
     public function destroy($id)
     {
-        $pelangganModel = new PelangganModel();
+        $pelangganModel = new PerusahaanModel();
 
         // Cek apakah data dengan ID yang diberikan ada
-        $pelanggan = $pelangganModel->find($id);
-        if (!$pelanggan) {
-            session()->setFlashdata('error', 'Data pelanggan tidak ditemukan.');
-            return redirect()->to('/admin/pelanggan');
+        $perusahaan = $pelangganModel->find($id);
+        if (!$perusahaan) {
+            session()->setFlashdata('error', 'Data perusahaan tidak ditemukan.');
+            return redirect()->to('/admin/perusahaan');
         }
 
         // Hapus data
         $pelangganModel->delete($id);
-        session()->setFlashdata('berhasil', 'Data pelanggan berhasil dihapus.');
-        return redirect()->to('/admin/pelanggan');
+        session()->setFlashdata('berhasil', 'Data perusahaan berhasil dihapus.');
+        return redirect()->to('/admin/perusahaan');
     }
 }

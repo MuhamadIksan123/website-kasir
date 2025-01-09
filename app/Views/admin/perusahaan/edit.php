@@ -1,26 +1,26 @@
-<?= $this->extend('Admin/layout.php') ?>
+<?= $this->extend('admin/layout.php') ?>
 
 <?= $this->section('content') ?>
 
 <div class="card col-md-6">
     <div class="card-body">
-        <form method="post" action="<?= base_url('/admin/pelanggan/store') ?>">
+        <form method="post" action="<?= base_url('/admin/perusahaan/update/' . $perusahaan['id']) ?>">
             <?= csrf_field() ?>
             <div class="input-style-1">
                 <label>Nama</label>
-                <input type="text" name="nama" placeholder="Nama" class="form-control <?= $validation->hasError('nama') ? 'is-invalid' : '' ?>" value="<?= set_value('nama'); ?>" />
+                <input type="text" name="nama" placeholder="Nama" class="form-control <?= $validation->hasError('nama') ? 'is-invalid' : '' ?>" value="<?= $perusahaan['nama']; ?>" />
                 <div class="invalid-feedback">
                     <?= $validation->getError('nama'); ?>
                 </div>
             </div>
             <div class="input-style-1">
                 <label>Alamat</label>
-                <textarea name="alamat" placeholder="Alamat" cols="30" rows="5" class="form-control <?= $validation->hasError('alamat') ? 'is-invalid' : '' ?>"></textarea>
+                <textarea name="alamat" placeholder="Alamat" cols="30" rows="5" class="form-control <?= $validation->hasError('alamat') ? 'is-invalid' : '' ?>"><?= $perusahaan['alamat']; ?></textarea>
                 <div class="invalid-feedback">
                     <?= $validation->getError('alamat'); ?>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 </div>

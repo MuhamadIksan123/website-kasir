@@ -42,13 +42,11 @@ class Transaksi extends BaseController
 
     public function create()
     {
-        $pelangganModel = new PelangganModel();
         $purchasingModel = new PurchasingModel();
         $productModel = new ProdukModel();
         $data = [
             'title' => 'Tambah Data Produk',
             'validation' => Services::validation(),
-            'pelanggan' => $pelangganModel->findAll(),
             'purchasing' => $purchasingModel->findAll(),
             'produk' => $productModel->findAll()
         ];
@@ -60,21 +58,16 @@ class Transaksi extends BaseController
         // Aturan validasi
         $rules = [
             'no_faktur' => [
-                'rules' => 'required',
+                'rules' => 'required|is_unique[transaksi.no_faktur]',
                 'errors' => [
-                    'required' => 'No Faktur harus diisi'
+                    'required' => 'No Faktur harus diisi',
+                    'is_unique' => 'No Faktur sudah terdaftar',
                 ]
             ],
             'tgl_transaksi' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Tanggal Transaksi harus diisi'
-                ]
-            ],
-            'id_pelanggan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pelanggan harus dipilih'
                 ]
             ],
             'id_purchasing' => [
@@ -100,14 +93,12 @@ class Transaksi extends BaseController
         // Validasi input
         if (! $this->validate($rules)) {
             // Mengambil data yang diperlukan untuk dropdown
-            $pelangganModel = new PelangganModel();
             $purchasingModel = new PurchasingModel();
             $produkModel = new ProdukModel();
 
             $data = [
                 'title' => 'Tambah Transaksi',
                 'validation' => \Config\Services::validation(),
-                'pelanggan' => $pelangganModel->findAll(),
                 'purchasing' => $purchasingModel->findAll(),
                 'produk' => $produkModel->findAll(),
             ];
@@ -117,7 +108,6 @@ class Transaksi extends BaseController
             $transaksiData = [
                 'no_faktur' => $this->request->getPost('no_faktur'),
                 'tgl_transaksi' => $this->request->getPost('tgl_transaksi'),
-                'id_pelanggan' => $this->request->getPost('id_pelanggan'),
                 'id_purchasing' => $this->request->getPost('id_purchasing'),
                 'id_admin' => session()->get('id_admin'), // Assuming you have an admin session
             ];

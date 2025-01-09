@@ -13,6 +13,18 @@
                     <?= $validation->getError('nama'); ?>
                 </div>
             </div>
+            <div class="input-style-1">
+                <label>Perusahaan</label>
+                <select name="id_perusahaan" class="form-select <?= $validation->hasError('id_perusahaan') ? 'is-invalid' : '' ?>">
+                    <option value="">-- Pilih Perusahaan --</option>
+                    <?php foreach ($perusahaan as $item): ?>
+                        <option value="<?= $item['id']; ?>" <?= set_select('id_perusahaan', $item['id']); ?>><?= $item['nama']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="invalid-feedback">
+                    <?= $validation->getError('id_perusahaan'); ?>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>

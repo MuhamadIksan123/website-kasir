@@ -12,8 +12,8 @@
         </div>
         <div class="col-md-6 text-end">
             <p>Kepada Yth :</p>
-            <h3 class="fw-bold"><?= $transaksi[0]['nama_pelanggan']; ?></h3>
-            <p><?= $transaksi[0]['alamat_pelanggan']; ?> <br> Up: <?= $transaksi[0]['nama_admin']; ?> </p>
+            <h3 class="fw-bold"><?= $transaksi[0]['nama_purchasing']; ?></h3>
+            <p><?= $transaksi[0]['alamat_perusahaan']; ?> <br> Up: <?= $transaksi[0]['nama_admin']; ?> </p>
         </div>
     </div>
     <div class="mb-4">

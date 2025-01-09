@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\PurchasingModel;
+use App\Models\PerusahaanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
 
@@ -16,20 +17,23 @@ class Purchasing extends BaseController
 
     public function index()
     {
-        $purchasing = new PurchasingModel();
+        $purchasingModel = new PurchasingModel();
         $data = [
             'title' => 'Halaman Purchasing',
             'validation' => Services::validation(),
-            'purchasing' => $purchasing->findAll()
+            'purchasing' => $purchasingModel->data_purchasing(),
         ];
         return view('admin/purchasing/index', $data);
     }
 
     public function create()
     {
+        $perusahaanModel = new PerusahaanModel();
+
         $data = [
             'title' => 'Tambah Data Purchasing',
-            'validation' => Services::validation()
+            'validation' => Services::validation(),
+            'perusahaan' => $perusahaanModel->findAll()
         ];
         return view('admin/purchasing/create', $data);
     }
@@ -41,6 +45,12 @@ class Purchasing extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Nama harus diisi'
+                ]
+            ],
+            'id_perusahaan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Perusahaan harus diisi'
                 ]
             ]
         ];
@@ -55,6 +65,7 @@ class Purchasing extends BaseController
             $purchasingModel = new PurchasingModel();
             $purchasingModel->insert([
                 'nama' =>  $this->request->getPost('nama'),
+                'id_perusahaan' =>  $this->request->getPost('id_perusahaan'),
             ]);
             session()->setFlashdata('berhasil', 'Data purchasing berhasil ditambahkan');
             return redirect()->to('/admin/purchasing');
@@ -63,17 +74,13 @@ class Purchasing extends BaseController
 
     public function edit($id)
     {
+        $perusahaanModel = new PerusahaanModel();
         $purchasingModel = new PurchasingModel();
-        $purchasing = $purchasingModel->find($id);
-        if (!$purchasing) {
-            session()->setFlashdata('Pesan', 'Data tidak tersedia');
-            return redirect()->to('/admin/purchasing');
-        }
-
         $data = [
             'title' => 'Edit Data Purchasing',
             'validation' => Services::validation(),
-            'purchasing' => $purchasing
+            'purchasing' => $purchasingModel->detail_purchasing($id),
+            'perusahaan' => $perusahaanModel->findAll()
         ];
         return view('admin/purchasing/edit', $data);
     }
@@ -85,6 +92,12 @@ class Purchasing extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Nama harus diisi'
+                ]
+            ],
+            'id_perusahaan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Perusahaan harus diisi'
                 ]
             ]
         ];
@@ -101,6 +114,7 @@ class Purchasing extends BaseController
         } else {
             $purchasingModel->update($id, [
                 'nama' =>  $this->request->getPost('nama'),
+                'id_perusahaan' =>  $this->request->getPost('id_perusahaan'),
             ]);
             session()->setFlashdata('berhasil', 'Data purchasing berhasil diupdate');
             return redirect()->to('/admin/purchasing');

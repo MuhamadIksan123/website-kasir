@@ -12,12 +12,12 @@ $routes->get('/logout', 'Login::logout');
 
 $routes->get('/admin', 'Admin::index', ['filter' => 'AdminFilter']);
 
-$routes->get('/admin/pelanggan', 'Admin\Pelanggan::index', ['filter' => 'AdminFilter']);
-$routes->get('/admin/pelanggan/create', 'Admin\Pelanggan::create', ['filter' => 'AdminFilter']);
-$routes->post('/admin/pelanggan/store', 'Admin\Pelanggan::store', ['filter' => 'AdminFilter']);
-$routes->get('/admin/pelanggan/edit/(:segment)', 'Admin\Pelanggan::edit/$1', ['filter' => 'AdminFilter']);
-$routes->post('/admin/pelanggan/update/(:segment)', 'Admin\Pelanggan::update/$1', ['filter' => 'AdminFilter']);
-$routes->get('/admin/pelanggan/destroy/(:segment)', 'Admin\Pelanggan::destroy/$1', ['filter' => 'AdminFilter']);
+$routes->get('/admin/perusahaan', 'Admin\Perusahaan::index', ['filter' => 'AdminFilter']);
+$routes->get('/admin/perusahaan/create', 'Admin\Perusahaan::create', ['filter' => 'AdminFilter']);
+$routes->post('/admin/perusahaan/store', 'Admin\Perusahaan::store', ['filter' => 'AdminFilter']);
+$routes->get('/admin/perusahaan/edit/(:segment)', 'Admin\Perusahaan::edit/$1', ['filter' => 'AdminFilter']);
+$routes->post('/admin/perusahaan/update/(:segment)', 'Admin\Perusahaan::update/$1', ['filter' => 'AdminFilter']);
+$routes->get('/admin/perusahaan/destroy/(:segment)', 'Admin\Perusahaan::destroy/$1', ['filter' => 'AdminFilter']);
 
 $routes->get('/admin/purchasing', 'Admin\Purchasing::index', ['filter' => 'AdminFilter']);
 $routes->get('/admin/purchasing/create', 'Admin\Purchasing::create', ['filter' => 'AdminFilter']);

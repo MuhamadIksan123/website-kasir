@@ -22,11 +22,6 @@ class Transaksi extends Migration
             'tgl_transaksi' => [
                 'type' => 'DATE',
             ],
-            'id_pelanggan' => [
-                'type'       => 'INT',
-                'unsigned'       => true,
-                'constraint' => 11,
-            ],
             'id_purchasing' => [
                 'type'       => 'INT',
                 'unsigned'       => true,
@@ -39,7 +34,6 @@ class Transaksi extends Migration
             ],
         ]);
         $this->forge->addKey('id_transaksi', true);
-        $this->forge->addForeignKey('id_pelanggan', 'pelanggan', 'id');
         $this->forge->addForeignKey('id_purchasing', 'purchasing', 'id');
         $this->forge->addForeignKey('id_admin', 'admin', 'id');
         $this->forge->createTable('transaksi');

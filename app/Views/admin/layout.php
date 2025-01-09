@@ -76,8 +76,15 @@
                         <span class="text">Data Admin</span>
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a href="<?= base_url('/admin/pelanggan'); ?>">
+                <li class="nav-item nav-item-has-children mb-2">
+                    <a
+                        href="#0"
+                        class=""
+                        data-bs-toggle="collapse"
+                        data-bs-target="#ddmenu_2"
+                        aria-controls="ddmenu_2"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -85,9 +92,18 @@
                                 <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                 <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                            </svg> </span>
-                        <span class="text">Data Pelanggan</span>
+                            </svg>
+                        </span>
+                        <span class="text">Pelanggan</span>
                     </a>
+                    <ul id="ddmenu_2" class="collapse dropdown-nav show">
+                        <li class="mb-2">
+                            <a href="<?= base_url('/admin/perusahaan') ?>">Perusahaan </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('/admin/purchasing') ?>">Purchasing </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('/admin/produk'); ?>">
