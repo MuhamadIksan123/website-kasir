@@ -305,6 +305,24 @@
             });
         <?php endif; ?>
 
+        <?php if (session()->get('error')): ?>
+            const Toast2 = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast2.fire({
+                icon: "success",
+                title: "<?= session()->get('error'); ?>"
+            });
+        <?php endif; ?>
+
         $('.tombol-hapus').on('click', function(e) {
             e.preventDefault();
             var getLink = $(this).attr('href');

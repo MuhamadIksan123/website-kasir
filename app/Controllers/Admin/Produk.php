@@ -157,11 +157,21 @@ class Produk extends BaseController
     public function destroy($id)
     {
         $produkModel = new ProdukModel();
+        $db = \Config\Database::connect();
 
         // Cek apakah data dengan ID yang diberikan ada
         $produk = $produkModel->find($id);
         if (!$produk) {
             session()->setFlashdata('error', 'Data produk tidak ditemukan.');
+            return redirect()->to('/admin/produk');
+        }
+
+        $isUsed = $db->table('detail_transaksi')
+        ->where('kode_produk', $id)
+        ->countAllResults();
+
+        if ($isUsed > 0) {
+            session()->setFlashdata('error', 'Data produk tidak dapat dihapus karena sedang digunakan dalam transaksi.');
             return redirect()->to('/admin/produk');
         }
 

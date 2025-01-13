@@ -62,7 +62,7 @@
                                     <div class="col-12">
                                         <div class="input-style-1">
                                             <label>Username</label>
-                                            <input type="username" name="username" class="form-control <?= $validation->hasError('username') ? 'is-invalid' : '' ?>" placeholder="Username" />
+                                            <input type="username" name="username" class="form-control <?= $validation->hasError('username') ? 'is-invalid' : '' ?>" placeholder="Username" value="<?= set_value('username'); ?>" />
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('username'); ?>
                                             </div>
